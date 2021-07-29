@@ -1,3 +1,7 @@
+
+当前版本的swagger访问地址是：
+/swagger-ui/index.html#/
+
 ## 使用简介
 * 拉取项目
 * 创建数据库ry 然后写入ry_20210210.sql和quartz.sql
