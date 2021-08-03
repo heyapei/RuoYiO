@@ -103,17 +103,6 @@
                 <version>${mybatis-spring-boot.version}</version>
             </dependency>
 
-            <!--升级为plus-->
-            <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-extension</artifactId>
-            </dependency>
 
             <!-- pagehelper 分页插件 -->
             <dependency>
