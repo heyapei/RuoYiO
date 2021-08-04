@@ -272,7 +272,6 @@ public class SysOperLog extends BaseEntity {
                 ", jsonResult='" + jsonResult + '\'' +
                 ", status=" + status +
                 ", errorMsg='" + errorMsg + '\'' +
-                ", operTime=" + operTime +
                 '}';
     }
 
