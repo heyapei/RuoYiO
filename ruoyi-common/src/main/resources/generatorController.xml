@@ -1,0 +1,11 @@
+<context>
+    <author>luxor</author>
+    <project>../ica-app</project>
+    <controllers packageName="com.dookay.xingtai.web.member.controller">
+        <controller name="Passport" url="passport/" desc="通行证">
+            <action name="register" url="register" method="get" desc="注册页面"/>
+            <action name="register" url="register" method="post" desc="注册操作"/>
+            <action name="login" url="login" method="get" desc="登录页面"/>
+        </controller>
+    </controllers>
+</context>

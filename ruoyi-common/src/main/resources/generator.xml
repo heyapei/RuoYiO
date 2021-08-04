@@ -1,0 +1,29 @@
+<context schema="ry">
+    <project>RuoYi</project>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://localhost:3306/ry?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8"
+                    uName="root" password="123456"/>
+
+    <!-- 数据类型 -->
+    <javaTypeResolver>
+        <property name="int" value="Integer"/>
+        <property name="tinyint" value="Integer"/>
+        <property name="bigint" value="Long"/>
+        <property name="char" value="String"/>
+        <property name="varchar" value="String"/>
+        <property name="text" value="String"/>
+        <property name="float" value="Float"/>
+        <property name="double" value="Double"/>
+        <property name="decimal" value="BigDecimal"/>
+        <property name="smallint" value="Integer"/>
+        <property name="timestamp" value="Date"/>
+        <property name="datetime" value="Date"/>
+        <property name="date" value="Date"/>
+        <property name="bit" value="Boolean"/>
+    </javaTypeResolver>
+
+    <table tableName="sys_student" domainObjectName="DayPrice"
+           packageName="com.ruoyi.com.ruoyi" desc="夏越价格" author="hz">
+    </table>
+
+</context>
