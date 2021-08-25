@@ -25,6 +25,8 @@ import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.security.CipherUtils;
 import com.ruoyi.common.utils.spring.SpringUtils;
+import com.ruoyi.framework.jwt.auth.AllowAllCredentialsMatcher;
+import com.ruoyi.framework.jwt.filter.JwtFilter;
 import com.ruoyi.framework.shiro.realm.UserRealm;
 import com.ruoyi.framework.shiro.session.OnlineSessionDAO;
 import com.ruoyi.framework.shiro.session.OnlineSessionFactory;
@@ -177,6 +179,7 @@ public class ShiroConfig
         UserRealm userRealm = new UserRealm();
         userRealm.setAuthorizationCacheName(Constants.SYS_AUTH_CACHE);
         userRealm.setCacheManager(cacheManager);
+        userRealm.setCredentialsMatcher(new AllowAllCredentialsMatcher());
         return userRealm;
     }
 
@@ -285,6 +288,7 @@ public class ShiroConfig
         filterChainDefinitionMap.put("/logout", "logout");
         // 不需要拦截的访问
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
+        filterChainDefinitionMap.put("/jwt/login", "anon");
         // 注册相关
         filterChainDefinitionMap.put("/register", "anon,captchaValidate");
         // 系统权限列表
@@ -295,10 +299,14 @@ public class ShiroConfig
         filters.put("syncOnlineSession", syncOnlineSessionFilter());
         filters.put("captchaValidate", captchaValidateFilter());
         filters.put("kickout", kickoutSessionFilter());
+        filters.put("jwt", new JwtFilter());
         // 注销成功，则跳转到指定页面
         filters.put("logout", logoutFilter());
         shiroFilterFactoryBean.setFilters(filters);
 
+        // jwt 请求单独验证
+        filterChainDefinitionMap.put("/api/**", "jwt");
+        
         // 所有请求需要认证
         filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

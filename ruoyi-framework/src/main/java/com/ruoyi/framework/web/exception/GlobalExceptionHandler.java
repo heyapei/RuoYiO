@@ -13,6 +13,7 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.exception.BusinessException;
 import com.ruoyi.common.exception.DemoModeException;
 import com.ruoyi.common.utils.ServletUtils;
+import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.security.PermissionUtils;
 
 /**
@@ -32,7 +33,7 @@ public class GlobalExceptionHandler
     public Object handleAuthorizationException(HttpServletRequest request, AuthorizationException e)
     {
         log.error(e.getMessage(), e);
-        if (ServletUtils.isAjaxRequest(request))
+        if (ServletUtils.isAjaxRequest(request) || StringUtils.isNotEmpty(request.getHeader("token")))
         {
             return AjaxResult.error(PermissionUtils.getMsg(e.getMessage()));
         }
@@ -48,24 +49,20 @@ public class GlobalExceptionHandler
      * 请求方式不支持
      */
     @ExceptionHandler({ HttpRequestMethodNotSupportedException.class })
-    public AjaxResult handleException(HttpRequestMethodNotSupportedException e, HttpServletRequest request)
+    public AjaxResult handleException(HttpRequestMethodNotSupportedException e)
     {
-        String requestURI = request.getRequestURI();
-        String msg = String.format("访问的URL[%s]不支持%s请求", requestURI, e.getMethod());
-        log.error(msg, e);
-        return AjaxResult.error(msg);
+        log.error(e.getMessage(), e);
+        return AjaxResult.error("不支持' " + e.getMethod() + "'请求");
     }
 
     /**
      * 拦截未知的运行时异常
      */
     @ExceptionHandler(RuntimeException.class)
-    public AjaxResult notFount(RuntimeException e, HttpServletRequest request)
+    public AjaxResult notFount(RuntimeException e)
     {
-        String requestURI = request.getRequestURI();
-        String msg = String.format("访问的URL[%s]发生异常%s", requestURI, e.getMessage());
-        log.error(msg, e);
-        return AjaxResult.error(msg);
+        log.error("运行时异常:", e);
+        return AjaxResult.error("运行时异常:" + e.getMessage());
     }
 
     /**
