@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RedisUtilTest  {
 
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisExpUtil redisUtil;
 
 
     @Test
