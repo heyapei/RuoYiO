@@ -13,10 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Redis工具类
+ * redis字符串序列话处理
  *
- * @author WangFan
- * @version 1.1 (GitHub文档: https://github.com/iyayu/RedisUtil )
- * @date 2018-02-24 下午03:09:50
+ * @author hz
+ * @version 1.0.0
+ * @date 2021/08/26
+ * @since 1.0.0
  */
 @Component
 public class RedisUtil {

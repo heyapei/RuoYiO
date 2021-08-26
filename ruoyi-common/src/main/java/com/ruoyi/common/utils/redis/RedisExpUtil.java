@@ -10,6 +10,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 会以自己方式保存
+ *
+ * @author hz
+ * @version 1.0.0
+ * @date 2021/08/26
+ * @since 1.0.0
+ */
 @Component
 public class RedisExpUtil {
  
